@@ -41,7 +41,7 @@ import org.junit.Test;
 public class SubversionChangeLogSetTest {
 
     @Test
-    public void testRemoveDuplicateEntries() throws Exception{
+    public void removeDuplicateEntries() throws Exception{
         //One duplicated entry. 7 unique, 8 total entries.
         List<SubversionChangeLogSet.LogEntry> items = new ArrayList<SubversionChangeLogSet.LogEntry>();
         items.add(buildChangeLogEntry(1, "Test msg"));

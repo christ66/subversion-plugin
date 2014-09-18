@@ -9,8 +9,10 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.Bug;
+import org.jvnet.hudson.test.JenkinsRule;
 import org.xml.sax.SAXException;
 
 /**
@@ -18,8 +20,8 @@ import org.xml.sax.SAXException;
  * 
  * @author kutzi
  */
-public class SubversionChangeLogParserTest extends AbstractSubversionTest {
-    
+public class SubversionChangeLogParserTest {
+    @Rule public JenkinsRule j = new JenkinsRule();
     private File changelogFile;
     private SubversionChangeLogSet changeLogSet;
 

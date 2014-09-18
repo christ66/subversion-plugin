@@ -1,13 +1,14 @@
 package hudson.scm.listtagsparameter;
 
 import hudson.Proc;
-import hudson.scm.AbstractSubversionTest;
 
 import java.util.Arrays;
 import java.util.List;
 
+import hudson.scm.SubversionTestUtils;
 import org.junit.Assert;
 
+import org.junit.Test;
 import org.jvnet.hudson.test.Bug;
 import org.tmatesoft.svn.core.ISVNDirEntryHandler;
 import org.tmatesoft.svn.core.SVNDirEntry;
@@ -20,13 +21,13 @@ import org.tmatesoft.svn.core.wc.SVNRevision;
 /**
  * @author Kohsuke Kawaguchi
  */
-public class ListSubversionTagsParameterDefinitionTest extends AbstractSubversionTest {
+public class ListSubversionTagsParameterDefinitionTest {
     /**
      * Make sure we are actually listing tags correctly.
      */
     @Bug(11933)
-    public void testListTags() throws Exception {
-        Proc p = runSvnServe(getClass().getResource("JENKINS-11933.zip"));
+    @Test public void testListTags() throws Exception {
+      Proc p = SubversionTestUtils.runSvnServe(getClass().getResource("JENKINS-11933.zip"));
         try {
             ListSubversionTagsParameterDefinition def = new ListSubversionTagsParameterDefinition("FOO", "svn://localhost/", null, "", "", "", false, false);
             List<String> tags = def.getTags(null);

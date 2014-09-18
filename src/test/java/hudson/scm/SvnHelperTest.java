@@ -41,7 +41,7 @@ public class SvnHelperTest {
         String value = SvnHelper.getUrlWithoutRevision(serverURL);
         Assert.assertEquals("URL w/o revision differs from expected value", expected, value);
     }
-    
+
     private void testGetUrlWithoutRevision(String serverUrl) {
         testGetUrlWithoutRevision(serverUrl, URL_PREFIX);
     }
