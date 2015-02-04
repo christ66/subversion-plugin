@@ -31,6 +31,8 @@ import org.tmatesoft.svn.core.internal.wc.DefaultSVNAuthenticationManager;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author schristou88
@@ -46,7 +48,15 @@ public class SVNAuthenticationManager extends DefaultSVNAuthenticationManager {
   @Override
   @CheckForNull
   public SVNAuthentication getFirstAuthentication(String kind, String realm, SVNURL url) throws SVNException {
+      try {
+          return super.getFirstAuthentication(kind, realm, url);
+      } catch (SVNException e) {
+          LOGGER.log(Level.FINE, "Authentication from default svn location failed. Using credentials.", e);
+      }
+      
     // SVNKIT DefaultAuthenticationManager ignores any credentials that are added to the manager.
     return super.getAuthenticationProvider().requestClientAuthentication(kind, url, realm, null, null, false);
   }
+    
+    private static final Logger LOGGER = Logger.getLogger(SVNAuthenticationManager.class.getName());
 }
